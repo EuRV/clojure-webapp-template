@@ -1,19 +1,17 @@
 (ns server.core
-  (:require [ring.adapter.jetty :refer [run-jetty]])
+  (:require [ring.adapter.jetty :refer [run-jetty]]
+            [compojure.core :refer [defroutes routes]]
+            
+            [server.routes.home :refer [home-routes]])
   (:gen-class))
 
-(defn app [request]
-  (let [{:keys [uri request-method]} request]
-    {:status 200
-     :headers {"Content-Type" "text/plain"}
-     :body (format "You requested %s %s"
-                   (-> request-method name .toUpperCase)
-                   uri)}))
+(defroutes app-routes
+  (routes home-routes))
 
 #_{:clj-kondo/ignore [:unused-binding]}
 (defn -main [& args]
-  (run-jetty #'app {:port 3000}))
+  (run-jetty #'app-routes {:port 3000}))
 
 (comment
-  (app {:request-method :post :uri "/users"})
+  (app-routes {:request-method :get :uri "/"})
   :rcf)
