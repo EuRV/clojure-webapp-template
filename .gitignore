@@ -18,4 +18,4 @@ pom.xml.asc
 
 # clojure-lsp
 .lsp/
-.clj-kondo/.cache
+.clj-kondo/
