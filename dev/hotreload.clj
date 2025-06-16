@@ -1,7 +1,8 @@
 (ns hotreload
-  (:require [ring.adapter.jetty :refer [run-jetty]]
-            [ring.middleware.reload :refer [wrap-reload]]
-            [server.core :refer [app-routes]])
+  (:require
+   [ring.adapter.jetty :refer [run-jetty]]
+   [ring.middleware.reload :refer [wrap-reload]]
+   [my-clojure-template.core :refer [app-routes]])
   (:gen-class))
 
 (def dev-handler
